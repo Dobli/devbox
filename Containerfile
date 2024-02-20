@@ -7,6 +7,9 @@ LABEL com.github.containers.toolbox="true" \
       summary="Image for Arch Linux dev container" \
       maintainer="Dobli"
 
+# Enable locales for de_DE
+RUN echo "NoExtract   = !usr/share/*locales/de_?? !usr/share/*locales/i18n* !usr/share/*locales/iso*" >> /etc/pacman.conf
+
 # Install extra packages
 COPY extra-packages /
 RUN pacman -Syu --needed --noconfirm - < extra-packages
@@ -17,9 +20,6 @@ RUN yes | pacman -Scc
 
 # Enable sudo permission for wheel users
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
-
-# Generate locales
-RUN sed -i "s|#.*de_DE.UTF-8|de_DE.UTF-8|g" /etc/locale.gen; locale-gen
 
 # Mount common host tools
 RUN   ln -fs /bin/sh /usr/bin/sh && \
