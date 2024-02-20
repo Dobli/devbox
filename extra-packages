@@ -10,6 +10,7 @@ ttf-nerd-fonts-symbols
 python-pynvim
 shfmt
 tig
+typescript
 yarn
 
 fd

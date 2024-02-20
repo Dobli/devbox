@@ -11,13 +11,15 @@ LABEL com.github.containers.toolbox="true" \
 RUN echo "NoExtract   = !usr/share/*locales/de_?? !usr/share/*locales/i18n* !usr/share/*locales/iso*" >> /etc/pacman.conf
 RUN sed -i "s|#.*de_DE.UTF-8|de_DE.UTF-8|g" /etc/locale.gen
 
-# Install extra packages
+# Install extra pacman packages
 COPY extra-packages /
 RUN pacman -Syu --needed --noconfirm - < extra-packages
 RUN rm /extra-packages
-
 # Clean up cache
 RUN yes | pacman -Scc
+
+# Install node packages
+RUN yarn global add neovim --prefix /usr/local
 
 # Enable sudo permission for wheel users
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
