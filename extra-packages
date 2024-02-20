@@ -6,6 +6,7 @@ clang
 go
 neovim
 nodejs
+npm
 ttf-nerd-fonts-symbols
 python-pynvim
 shfmt
