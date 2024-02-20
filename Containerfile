@@ -1,16 +1,27 @@
-FROM quay.io/toolbx-images/alpine-toolbox:edge
+FROM docker.io/library/archlinux:base-devel
 
 LABEL com.github.containers.toolbox="true" \
-      usage="This image is meant to be used with the toolbox or distrobox command" \
-      summary="A cloud-native terminal experience" \
-      maintainer="jorge.castro@gmail.com"
+      name="devbox" \
+      version="latest" \
+      usage="This image is meant to be used with the distrobox command" \
+      summary="Image for Arch Linux dev container" \
+      maintainer="Dobli"
 
+# Install extra packages
 COPY extra-packages /
-RUN apk update && \
-    apk upgrade && \
-    grep -v '^#' /extra-packages | xargs apk add
+RUN pacman -Syu --needed --noconfirm - < extra-packages
 RUN rm /extra-packages
 
+# Clean up cache
+RUN yes | pacman -Scc
+
+# Enable sudo permission for wheel users
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
+
+# Generate locales
+RUN sed -i "s|#.*de_DE.UTF-8|de_DE.UTF-8|g" /etc/locale.gen; locale-gen
+
+# Mount common host tools
 RUN   ln -fs /bin/sh /usr/bin/sh && \
       ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
       ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
