@@ -4,6 +4,7 @@ zsh
 
 clang
 go
+jdk-openjdk
 neovim
 nodejs
 npm
