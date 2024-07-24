@@ -1,4 +1,4 @@
-FROM ghcr.io/archlinux/archlinux:base-devel
+FROM ghcr.io/ublue-os/arch-distrobox
 
 LABEL com.github.containers.toolbox="true" \
       name="devbox" \
