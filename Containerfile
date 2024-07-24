@@ -1,4 +1,4 @@
-FROM docker.io/library/archlinux:base-devel
+FROM ghcr.io/archlinux/archlinux:base-devel
 
 LABEL com.github.containers.toolbox="true" \
       name="devbox" \
