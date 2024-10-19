@@ -8,7 +8,7 @@ LABEL com.github.containers.toolbox="true" \
       maintainer="Dobli"
 
 # Enable locales for de_DE
-RUN echo "NoExtract   = !usr/share/*locales/de_?? !usr/share/*locales/i18n* !usr/share/*locales/iso*" >> /etc/pacman.conf
+# RUN echo "NoExtract   = !usr/share/*locales/de_?? !usr/share/*locales/i18n* !usr/share/*locales/iso*" >> /etc/pacman.conf
 RUN sed -i "s|#.*de_DE.UTF-8|de_DE.UTF-8|g" /etc/locale.gen
 
 # Install extra pacman packages
