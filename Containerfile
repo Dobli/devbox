@@ -19,7 +19,7 @@ RUN yarn global add neovim --prefix /usr/local
 
 # Enable locales for de_DE
 RUN sed -i "s|#.*de_DE.UTF-8|de_DE.UTF-8|g" /etc/locale.gen
-RUN locale --all-locales
+RUN locale-gen
 
 # Enable sudo permission for wheel users
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
