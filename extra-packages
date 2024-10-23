@@ -13,6 +13,7 @@ python-pynvim
 shfmt
 tig
 typescript
+uv
 yarn
 
 fd
@@ -25,3 +26,5 @@ git-credential-gopass
 gopass-jsonapi
 
 wl-clipboard
+
+kubectl
