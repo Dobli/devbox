@@ -10,6 +10,7 @@ nodejs
 npm
 ttf-nerd-fonts-symbols
 python-pynvim
+rust
 shfmt
 tig
 typescript
