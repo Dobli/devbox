@@ -12,7 +12,8 @@ COPY extra-packages /
 RUN pacman -Syu --needed --noconfirm - < extra-packages
 RUN rm /extra-packages
 # Clean up cache
-RUN yes | pacman -Scc
+RUN pacman -S --clean --clean && \
+    rm -rf /var/cache/pacman/pkg/*
 
 # Install node packages
 RUN yarn global add neovim --prefix /usr/local
